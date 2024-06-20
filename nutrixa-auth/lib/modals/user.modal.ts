@@ -25,6 +25,15 @@ const UserSchema = new Schema({
   lastName: {
     type: String,
   },
+  weight: {
+    type: Number,
+    required: true, 
+  },
+  diets: {
+    type: [String], 
+    required: true, 
+  },
+  
 });
 
 const User = models?.User || model("User", UserSchema);
