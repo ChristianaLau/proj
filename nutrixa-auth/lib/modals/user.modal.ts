@@ -17,7 +17,7 @@ const UserSchema = new Schema({
   },
   photo: {
     type: String,
-    required: true,
+    required: false,
   },
   firstName: {
     type: String,
@@ -27,11 +27,11 @@ const UserSchema = new Schema({
   },
   weight: {
     type: Number,
-    required: true, 
+    required: false, 
   },
   diets: {
     type: [String], 
-    required: true, 
+    required: false, 
   },
   
 });
