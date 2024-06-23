@@ -11,6 +11,11 @@ const UserSchema = new Schema({
     required: true,
     unique: true,
   },
+  username: {
+    type: String,
+    unique:false,
+    sparse: true,
+  },
   photo: {
     type: String,
     required: false,
