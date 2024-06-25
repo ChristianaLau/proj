@@ -13,11 +13,12 @@ const UserSchema = new Schema({
   },
   username: {
     type: String,
-    unique: true,
+    unique:true,
+    sparse: true,
   },
   photo: {
     type: String,
-    required: true,
+    required: false,
   },
   firstName: {
     type: String,
@@ -27,15 +28,15 @@ const UserSchema = new Schema({
   },
   weight: {
     type: Number,
-    required: true, 
+    required: false, 
   },
   diets: {
     type: [String], 
-    required: true, 
+    required: false, 
   },
   
 });
 
-const User = models?.User || model("User", UserSchema);
+const User = models?.User || model("User", UserSchema, "Nutrixa_Users");
 
 export default User;
