@@ -5,6 +5,11 @@ import { useSession } from 'next-auth/client';
 export default async function updatePreferences(req, res, dietaryPreferences) {
     const { user } = useAuth();
     const session = useSession();
+
+    if (!session) {
+        res.status(401).json({ message: 'Unauthorized' });
+        return;
+    }
     
     if (req.method === 'POST') {
         dietaryPreferences = req.body;
