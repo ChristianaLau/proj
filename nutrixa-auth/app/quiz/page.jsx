@@ -24,10 +24,33 @@ const QuizPage = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log('Form submitted:', formState);
     // Add your form submission logic here
+
+    // Auth the user & get their corresponding clerk ID 
+    // Match that clerk ID / user ID with the user
+    // Call the corresponding user & update their fields
+
+    try {
+      const response = await fetch('/api/updatePreferences', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ dietaryPreferences: formState }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to update preferences');
+      }
+
+      const data = await response.json();
+      console.log('Form submitted successfully:', data);
+    } catch (error) {
+      console.error('Error submitting form:', error);
+    }
   };
 
   return (
