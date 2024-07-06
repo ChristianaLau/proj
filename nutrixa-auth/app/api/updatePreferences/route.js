@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import connectDB from "@/lib/mongodb";
 import { currentUser } from '@clerk/nextjs/server';
+import mongoose from "mongoose";
 
 export async function POST(req) {
   try {
