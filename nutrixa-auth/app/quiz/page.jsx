@@ -4,42 +4,63 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 
 const QuizPage = () => {
-  const [formState, setFormState] = useState({
-    vegetarian: false,
-    vegan: false,
-    halal: false,
-    kosher: false,
-    glutenFree: false,
-    dairyFree: false,
-    nutFree: false,
-    other: false,
-    otherText: '',
-  });
+  const [vegetarian, setVegetarian] = useState(false);
+  const [vegan, setVegan] = useState(false);
+  const [halal, setHalal] = useState(false);
+  const [kosher, setKosher] = useState(false);
+  const [glutenFree, setGlutenFree] = useState(false);
+  const [dairyFree, setDairyFree] = useState(false);
+  const [nutFree, setNutFree] = useState(false);
+  const [other, setOther] = useState(false);
+  const [otherText, setOtherText] = useState('');
 
   const handleFormChange = (e) => {
     const { id, type, value, checked } = e.target;
-    setFormState({
-      ...formState,
-      [id]: type === 'checkbox' ? checked : value,
-    });
+    if (type === 'checkbox') {
+      switch (id) {
+        case 'vegetarian':
+          setVegetarian(checked);
+          break;
+        case 'vegan':
+          setVegan(checked);
+          break;
+        case 'halal':
+          setHalal(checked);
+          break;
+        case 'kosher':
+          setKosher(checked);
+          break;
+        case 'glutenFree':
+          setGlutenFree(checked);
+          break;
+        case 'dairyFree':
+          setDairyFree(checked);
+          break;
+        case 'nutFree':
+          setNutFree(checked);
+          break;
+        case 'other':
+          setOther(checked);
+          break;
+        default:
+          break;
+      }
+    } else {
+      if (id === 'otherText') {
+        setOtherText(value);
+      }
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Form submitted:', formState);
-    // Add your form submission logic here
-
-    // Auth the user & get their corresponding clerk ID 
-    // Match that clerk ID / user ID with the user
-    // Call the corresponding user & update their fields
-
     try {
       const response = await fetch('/api/updatePreferences', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ dietaryPreferences: formState }),
+        body: JSON.stringify({ vegetarian, vegan, halal, kosher, glutenFree, dairyFree, nutFree, other, otherText}),
       });
 
       if (!response.ok) {
@@ -66,7 +87,7 @@ const QuizPage = () => {
             <input
               type="checkbox"
               id="vegetarian"
-              checked={formState.vegetarian}
+              checked={vegetarian}
               onChange={handleFormChange}
               className="mr-2"
             />
@@ -78,7 +99,7 @@ const QuizPage = () => {
             <input
               type="checkbox"
               id="vegan"
-              checked={formState.vegan}
+              checked={vegan}
               onChange={handleFormChange}
               className="mr-2"
             />
@@ -90,7 +111,7 @@ const QuizPage = () => {
             <input
               type="checkbox"
               id="halal"
-              checked={formState.halal}
+              checked={halal}
               onChange={handleFormChange}
               className="mr-2"
             />
@@ -102,7 +123,7 @@ const QuizPage = () => {
             <input
               type="checkbox"
               id="kosher"
-              checked={formState.kosher}
+              checked={kosher}
               onChange={handleFormChange}
               className="mr-2"
             />
@@ -114,7 +135,7 @@ const QuizPage = () => {
             <input
               type="checkbox"
               id="glutenFree"
-              checked={formState.glutenFree}
+              checked={glutenFree}
               onChange={handleFormChange}
               className="mr-2"
             />
@@ -126,7 +147,7 @@ const QuizPage = () => {
             <input
               type="checkbox"
               id="dairyFree"
-              checked={formState.dairyFree}
+              checked={dairyFree}
               onChange={handleFormChange}
               className="mr-2"
             />
@@ -138,7 +159,7 @@ const QuizPage = () => {
             <input
               type="checkbox"
               id="nutFree"
-              checked={formState.nutFree}
+              checked={nutFree}
               onChange={handleFormChange}
               className="mr-2"
             />
@@ -150,14 +171,14 @@ const QuizPage = () => {
             <input
               type="checkbox"
               id="other"
-              checked={formState.other}
+              checked={other}
               onChange={handleFormChange}
               className="mr-2"
             />
             <input
               type="text"
               id="otherText"
-              value={formState.otherText}
+              value={otherText}
               onChange={handleFormChange}
               className="mt-2 p-2 w-full border border-gray-300 rounded"
               placeholder="Please specify"
