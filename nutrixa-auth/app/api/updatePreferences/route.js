@@ -19,7 +19,11 @@ export async function POST(req) {
 
     //issue w/ email & collection
     const db = mongoose.connection.db;
-    const collection = db.collection("users");
+    const collection = db.collection("Nutrixa_Users");
+
+    const allUsers = await collection.find({}).toArray();
+    console.log("All Users in Collection:", allUsers);
+
 
     const userDoc = await collection.findOne({ email: email });
     console.log("User Document: ", userDoc);
