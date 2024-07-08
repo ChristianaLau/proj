@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import connectDB from "@/lib/mongodb";
+import connect from "@/lib/db";
 import { currentUser } from '@clerk/nextjs/server';
 import mongoose from "mongoose";
 
@@ -13,9 +13,8 @@ export async function POST(req) {
     const { vegetarian, vegan, halal, kosher, glutenFree, dairyFree, nutFree, other, otherText } = await req.json();
     const email = user.emailAddresses[0].emailAddress;
 
-    await connectDB();
+    await connect();
     console.log("Connected to DB");
-
 
     //issue w/ email & collection
     const db = mongoose.connection.db;
