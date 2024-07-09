@@ -10,7 +10,12 @@ export async function POST(req) {
       return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
     }
 
-    const { vegetarian, vegan, halal, kosher, glutenFree, dairyFree, nutFree, other, otherText } = await req.json();
+    const { gender,
+        height,
+        dob,
+        weight,
+        medicalConditions }
+         = await req.json();
     const email = user.emailAddresses[0].emailAddress;
 
     await connect();
@@ -31,16 +36,12 @@ export async function POST(req) {
         { email: email },
         {
           $set: {
-            diets: {
-              vegetarian,
-              vegan,
-              halal,
-              kosher,
-              glutenFree,
-              dairyFree,
-              nutFree,
-              other,
-              otherText,
+            person: {
+                gender,
+                height,
+                dob,
+                weight,
+                medicalConditions,
             },
           },
         },

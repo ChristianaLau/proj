@@ -5,6 +5,7 @@ import { NextResponse } from "next/server";
 import { Webhook } from "svix";
 
 import { createUser } from "@/lib/actions/user.actions";
+
 export async function POST(req: Request) {
   const WEBHOOK_SECRET = process.env.WEBHOOK_SECRET;
 
@@ -66,8 +67,10 @@ export async function POST(req: Request) {
         firstName: first_name,
         lastName: last_name,
         photo: image_url,
-        weight: 100,
-        diets: ["vegan", "kosher"]
+        // weight: 140,
+        diets: {},
+        goal: {},
+        person: {},
     };
 
     console.log(user);

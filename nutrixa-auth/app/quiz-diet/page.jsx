@@ -2,8 +2,11 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 
 const QuizPage = () => {
+  const router = useRouter();
+
   const [vegetarian, setVegetarian] = useState(false);
   const [vegan, setVegan] = useState(false);
   const [halal, setHalal] = useState(false);
@@ -69,6 +72,8 @@ const QuizPage = () => {
 
       const data = await response.json();
       console.log('Form submitted successfully:', data);
+
+      router.push('/quiz-goal');
     } catch (error) {
       console.error('Error submitting form:', error);
     }
