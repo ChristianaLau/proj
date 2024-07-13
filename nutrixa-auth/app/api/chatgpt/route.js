@@ -1,32 +1,34 @@
-// import axios from 'axios';
+import { NextResponse } from 'next/server';
+import axios from 'axios';
 
-// export default async function handler(req, res) {
-//   if (req.method !== 'POST') {
-//     res.setHeader('Allow', ['POST']);
-//     res.status(405).end(`Method ${req.method} Not Allowed`);
-//     return;
-//   }
+export async function POST(req) {
+  try {
+    const { query } = await req.json();
 
-//   const { query } = req.body;
+    if (!query) {
+      return NextResponse.json({ error: 'Query is required' }, { status: 400 });
+    }
 
-//   if (!query) {
-//     res.status(400).json({ error: 'Query is required' });
-//     return;
-//   }
+    const response = await axios.post(
+      'https://api.openai.com/v1/engines/davinci-codex/completions',
+      {
+        prompt: query,
+        max_tokens: 100,
+      },
+      {
+        headers: {
+          'Authorization': `Bearer ${process.env.OPENAI_API_KEY}`,
+          'Content-Type': 'application/json',
+        }
+      }
+    );
 
-//   try {
-//     const response = await axios.post('https://api.openai.com/v1/engines/davinci-codex/completions', {
-//       prompt: query,
-//       max_tokens: 100
-//     }, {
-//       headers: {
-//         'Authorization': `Bearer ${process.env.OPENAI_API_KEY}`,
-//         'Content-Type': 'application/json'
-//       }
-//     });
+    return NextResponse.json({ result: response.data.choices[0].text });
+  } catch (error) {
+    return NextResponse.json({ error: error.message }, { status: 500 });
+  }
+}
 
-//     res.status(200).json({ result: response.data.choices[0].text });
-//   } catch (error) {
-//     res.status(500).json({ error: error.message });
-//   }
-// }
+export function OPTIONS() {
+  return NextResponse.json({}, { status: 200, headers: { Allow: 'POST' } });
+}
