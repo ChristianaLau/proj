@@ -8,7 +8,7 @@ export default function Home()
       <header className="w-full flex justify-between items-center p-4 bg-custom-gradient border-b border-gray-300">
         <div className="flex items-center space-x-4">
           <Image
-            src="/logo-and-banner.png"
+            src="/logo_and_banner.png"
             alt="logo and banner"
             width={500}
             height={50}
