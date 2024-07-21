@@ -73,14 +73,14 @@ const QuizPage = () => {
           width: '700px',
           height: '600px',
           display: 'flex',
-          flexDirection: 'column', // Ensure items stack vertically
+          flexDirection: 'column', 
           justifyContent: 'center',
           alignItems: 'center',
           marginBottom: '20px',
           marginTop: '40px',
           backgroundColor: "#F9F9F9",
           boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.2)',
-          textAlign: 'center' // Center aligns content horizontally
+          textAlign: 'center' 
         }}>
         <h1 style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif', fontSize: '30px', marginBottom: '20px' }}>Select Your Information:</h1>
         <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-4xl p-4">
@@ -99,7 +99,7 @@ const QuizPage = () => {
           </div>
           <div className="bg-blue-800 rounded-2xl p-4 flex flex-col justify-center" style={{ backgroundColor: "#FEFEFE", boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)' }}>
             <label htmlFor="dob" className="text-black mb-2">Date of Birth</label>
-            <input type="date" id="dob" value={dob} onChange={handleFormChange} className="p-2 border border-gray-300 rounded" />
+            <input type="date" id="dob" value={dob} onChange={handleFormChange} required className="p-2 border border-gray-300 rounded" />
           </div>
           <div className="bg-blue-800 rounded-2xl p-4 flex flex-col justify-center" style={{ backgroundColor: "#FEFEFE", boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)' }}>
             <label htmlFor="weight" className="text-black mb-2">Weight</label>
@@ -107,7 +107,7 @@ const QuizPage = () => {
           </div>
           <div className="bg-blue-800 rounded-2xl p-4 flex flex-col justify-center col-span-1 md:col-span-2" style={{ backgroundColor: "#FEFEFE", boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)' }}>
             <label htmlFor="medicalConditions" className="text-black mb-2">Medical Conditions</label>
-            <textarea id="medicalConditions" value={medicalConditions} onChange={handleFormChange} className="p-2 border border-gray-300 rounded" placeholder="Please specify any medical conditions" required></textarea>
+            <textarea id="medicalConditions" value={medicalConditions} onChange={handleFormChange} className="p-2 border border-gray-300 rounded" placeholder="Please specify any medical conditions" ></textarea>
           </div>
           <div className="col-span-1 md:col-span-2 flex justify-center">
             <button type="submit" className="bg-blue-700 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded" style={{ backgroundColor: "#5DB075", width: '300px', height: '40px', marginTop: '30px' }}>Continue</button>

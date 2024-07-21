@@ -1,50 +1,67 @@
 import Link from 'next/link';
+import Image from 'next/image'; 
+import { UserCircleIcon } from '@heroicons/react/24/solid'; 
 import { UserButton, auth } from '@clerk/nextjs';
 
-const Header = async ({ username }) => {
-  const { userId } = auth();
+const Header = () => {
+  const { userId } = auth(); 
 
   return (
-    <nav className='flex items-center justify-between px-6 py-4 bg-green-700'style={{backgroundColor: '#5DB075' }}>
-      <div className='flex items-center'>
-        <Link href='/'>
-          <div className='text-lg font-bold text-white uppercase'>
-            Nutrixa
-          </div>
+    <header className="w-full flex justify-between items-center border-b p-4">
+      <div className="flex justify-center flex-grow">
+        <Link href="/" legacyBehavior>
+          <a>
+            <Image
+              src="/nutrixa-logo.svg"
+              alt="nutrixa-icon"
+              width={250}
+              height={150}
+              priority
+            />
+          </a>
         </Link>
       </div>
-      <div className='flex items-center text-white'>
-        {!userId && (
+      <div className="flex items-center space-x-2">
+        {userId ? (
+          <>
+            <input
+              type="text"
+              placeholder="search"
+              className="p-2 border border-gray-300 rounded-full text-sm"
+            />
+            <button className="p-2 bg-gray-300 hover:bg-gray-400 rounded-full text-sm">
+              Search
+            </button>
+            <div className=" flex items-center">
+              <div className="flex items-center justify-center w-16 h-16">
+                <UserButton
+                  afterSignOutUrl='/'
+                  className="w-full h-full"
+                />
+              </div>
+            </div>
+          </>
+        ) : (
           <>
             <Link
               href='sign-in'
-              className='text-white hover:text-gray-300 mr-4'
+              className='text-black hover:text-gray-300 mr-4 text-2xl'
             >
               Sign In
             </Link>
             <Link
               href='sign-up'
-              className='text-white hover:text-gray-300 mr-4'
+              className='text-black hover:text-gray-300 mr-4 text-2xl'
             >
               Sign Up
             </Link>
           </>
         )}
-        {userId && (
-          <>
-            <Link href='profile' className='text-gray-300 hover:text-white mr-4'>
-              Profile
-            </Link>
-            <Link href='quiz-diet' className='text-gray-300 hover:text-white mr-4'>
-              Quiz
-            </Link>
-          </>
-        )}
-        <div className='ml-auto'>
-          <UserButton afterSignOutUrl='/' />
-        </div>
       </div>
-    </nav>
+      <div className='ml-auto'>
+        {/* Additional content can go here */}
+      </div>
+    </header>
   );
 };
 
