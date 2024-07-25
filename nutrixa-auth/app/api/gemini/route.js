@@ -41,8 +41,8 @@ export async function GET(req) {
     Return 7 days of sugguestions for both the workout and meal plan. Return it in an array format [ [workout1, workout2, workout3, workout4, workout5, workout6, workout7], [meal1, meal2, meal3, meal4, meal5, meal6, meal7] ]`;
 
     const result = await model.generateContent(prompt);
-    const text = result.content;
-
+    const text = await result.response.text();
+    console.log("Response Text:", text);
     const suggestions = JSON.parse(text);
     console.log("Suggestions: ", suggestions);
 
@@ -63,7 +63,9 @@ export async function GET(req) {
     return NextResponse.json(suggestions, { status: 200 });
   }}
   catch (error) {
+    console.error('Error handling request:', error);
     return NextResponse.json({ error: error.message }, { status: 500 });
+    
   }
 }
 

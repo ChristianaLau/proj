@@ -1,13 +1,9 @@
 import './globals.css';
 import { Inter } from 'next/font/google';
 import { ClerkProvider } from '@clerk/nextjs';
-import { UserButton, auth } from '@clerk/nextjs';
 import Header from './components/Header';
 import type { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
-import { UserCircleIcon } from '@heroicons/react/24/solid';
-//import Sidebar from "./components/Sidebar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -26,10 +22,8 @@ export default function RootLayout({
       <html lang="en">
         <body className={inter.className}>
           <Header />
-          <main className="flex flex-col items-center justify-between min-h-screen bg-white">
-
-
-            <div className="flex-grow flex flex-col items-center justify-start w-full px-4">
+          <main className="flex flex-col min-h-screen bg-white">
+            <div className="flex-grow flex flex-col items-center w-full px-4">
               {children}
             </div>
 

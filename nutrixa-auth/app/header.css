@@ -1,0 +1,47 @@
+/*probably dont need this*/
+
+.header{
+    display:flex;
+    justify-content: space-between;
+}
+
+.logo{
+    width: 10rem;
+    height: 5rem;
+}
+
+.header-menu{
+    list-style-type: none;
+    display: flex;
+    font-weight: bold;
+    gap: 8rem;
+    color: black;
+}
+
+.header-menu>li:hover{
+    cursor: pointer;
+    color:palegreen;
+    
+}
+
+@media screen and (max-width: 768px) {
+    .header>:nth-child(2){
+        position: fixed;
+        right:2rem;
+        z-index: 99;
+        gap: 2rem;
+    }
+
+    .header-menu{
+        flex-direction: column;
+        background-color: honeydew;
+        padding: 2rem;
+    }
+    .logo{
+        width: 5rem;
+        height: fit-content;
+        margin-left: -2rem;
+    }
+
+
+}

@@ -2,17 +2,19 @@
 import { useState, useEffect } from 'react';
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 
-const genAI = new GoogleGenerativeAI('AIzaSyCsxvRUEvieHX0_TyXDmMhJxqEuOw6XadA');
+console.log('API Key:', process.env.NEXT_PUBLIC_GOOGLE_KEY);
+
+const genAI = new GoogleGenerativeAI(process.env.NEXT_PUBLIC_GOOGLE_KEY);
 const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
 export default function Chatbot() {
   const [message, setMessage] = useState<string>('');
   const [messages, setMessages] = useState<string[]>([]);
-  const [chat, setChat] = useState<any>(null); 
+  const [chat, setChat] = useState<any>(null);
 
   useEffect(() => {
     const initializeChat = async () => {
-      const chatInstance = model.startChat({
+      const chatInstance = await model.startChat({
         history: [
           {
             role: "user",
@@ -43,14 +45,13 @@ export default function Chatbot() {
       setMessage('');
 
       try {
-        // Send the message to the chat instance
         const result = await chat.sendMessage(message);
         const response = await result.response;
-        const text = response.text();
+        const text = await response.text();
 
         setMessages([...messages, `You: ${message}`, `King George III: ${text}`]);
       } catch (error) {
-        console.error('Error:', error);
+        console.error('Error occurred while sending message:', error);
         setMessages([...messages, `You: ${message}`, `King George III: Error occurred`]);
       }
     }

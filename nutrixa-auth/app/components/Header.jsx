@@ -45,13 +45,13 @@ const Header = () => {
           <>
             <Link
               href='sign-in'
-              className='text-black hover:text-gray-300 mr-4 text-2xl'
+              className='text-black hover:text-gray-300 mr-4 text-xl'
             >
               Sign In
             </Link>
             <Link
               href='sign-up'
-              className='text-black hover:text-gray-300 mr-4 text-2xl'
+              className='text-black hover:text-gray-300 mr-4 text-xl'
             >
               Sign Up
             </Link>

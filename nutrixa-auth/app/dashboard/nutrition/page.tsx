@@ -30,7 +30,8 @@ export default function Nutrition() {
   return (
     <div>
       <h1>Your Suggested Plans</h1>
-      <p> ... parse out here</p>
+      {/* Render suggestions here */}
+      <pre>{JSON.stringify(suggestions, null, 2)}</pre>
     </div>
   );
 }
