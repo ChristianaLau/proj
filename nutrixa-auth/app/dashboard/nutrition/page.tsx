@@ -3,10 +3,10 @@
 import React, { useEffect, useState } from "react";
 
 export default function Nutrition() {
-  const [suggestions, setSuggestions] = useState(null);
+  const [suggestions, setSuggestions] = useState();
 
   useEffect(() => {
-    const fetchSuggestions = async () => {
+    const createSugguestions = async () => {
       try {
         const response = await fetch(`/api/gemini`);
         if (!response.ok) {
@@ -20,9 +20,11 @@ export default function Nutrition() {
       }
     };
 
-    fetchSuggestions();
+    createSugguestions();
   }, []);
 
+  console.log(suggestions);
+  
   if (!suggestions) {
     return <div>Loading...</div>;
   }
@@ -31,7 +33,7 @@ export default function Nutrition() {
     <div>
       <h1>Your Suggested Plans</h1>
       {/* Render suggestions here */}
-      <pre>{JSON.stringify(suggestions, null, 2)}</pre>
+
     </div>
   );
 }

@@ -38,7 +38,7 @@ export async function GET(req) {
     // Prepare prompt with user data
     const prompt = `Suggest a workout and meal plan for a person of gender: ${person.gender}, aged: ${new Date().getFullYear() - new Date(person.dob).getFullYear()} years old, 
     weighing: ${person.weight}, height: ${person.height}, with the following dietary restrictions: ${JSON.stringify(diets)} and the goal: ${JSON.stringify(goal)}.
-    Return 7 days of sugguestions for both the workout and meal plan. Return it in an array format [ [workout1, workout2, workout3, workout4, workout5, workout6, workout7], [meal1, meal2, meal3, meal4, meal5, meal6, meal7] ]`;
+    Return 7 days of sugguestions for both the workout and meal plan. Return it in a strict format, such that the response is an array -- [ [workout1, workout2, workout3, workout4, workout5, workout6, workout7], [meal1, meal2, meal3, meal4, meal5, meal6, meal7] ]. Return no other tokens.`;
 
     const result = await model.generateContent(prompt);
     const text = await result.response.text();
