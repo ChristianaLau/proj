@@ -58,7 +58,7 @@ export async function GET(req) {
         },
         { returnDocument: 'after' }
       );
-    client.close();
+    //client.close();
 
     return NextResponse.json(suggestions, { status: 200 });
   }}

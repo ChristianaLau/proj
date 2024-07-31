@@ -6,6 +6,12 @@ import { currentUser } from '@clerk/nextjs/server';
 export default async function Home() {
   const user = await currentUser();
 
+  // const response = await fetch('http://localhost:3000/api/gemini');
+  // if (!response.ok) {
+  //   throw new Error('Failed to create suggestions');
+  // }
+  // const data = await response.json();
+
   return (
     <main className="flex min-h-screen flex-col items-center bg-white">
       <header className="w-full flex justify-between items-center p-4 bg-custom-gradient border-b border-gray-300">
