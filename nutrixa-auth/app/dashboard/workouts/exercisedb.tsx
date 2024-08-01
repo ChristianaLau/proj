@@ -1,6 +1,6 @@
 'use client'
 import { useEffect, useState } from 'react';
-import { fetchExercises } from '../../exercisedb/api';
+import { fetchExercises } from '../../api/exercisedb/route';
 
 type Exercise = {
   id: number;
