@@ -110,7 +110,7 @@ const QuizPage = () => {
           boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.2)',
         }}
       >
-        <h1 style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif', fontSize: '30px', marginBottom: '20px' }}>Select Your Fitness Goals:</h1>
+        <h1 style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif', fontSize: '30px', marginBottom: '20px' }}>Select Your Dietary Restrictions:</h1>
         <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="bg-green-800 rounded-2xl p-4 mx-auto" style={{ width: '200px', height: '60px', marginRight: '50px', backgroundColor: "#FEFEFE", boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)' }}>
             <input
