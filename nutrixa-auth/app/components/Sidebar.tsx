@@ -6,7 +6,12 @@ import {motion} from "framer-motion";
 import { useAnimationControls } from "framer-motion";
 import SidebarPage from "./Sidebar-pages";
 import { CalendarDaysIcon, ChartBarIcon, ChatBubbleBottomCenterIcon, ChatBubbleOvalLeftIcon } from "@heroicons/react/16/solid";
+import { IoFastFoodOutline } from "react-icons/io5";
+import { FaPenToSquare } from "react-icons/fa6";
+import { CgGym } from "react-icons/cg";
+import { FaMedal } from "react-icons/fa";
 import Link from "next/link";
+import './Sidebar.css'
 
 const Toggle={
     open:
@@ -106,38 +111,31 @@ const Sidebar = () =>
         <div className="flex flex-col gap-3">
 
             <SidebarPage name = "Calendar"isOpen={isOpen}href="dashboard/calendar">
-                <CalendarDaysIcon className="stroke-black min-w-8  w-8"/>
-
+                <CalendarDaysIcon className="icon-color w-8  h-8"/>
             </SidebarPage>
 
             <SidebarPage name = "Chatbot"isOpen={isOpen}href="dashboard/chatbot">
-                <ChatBubbleOvalLeftIcon className="stroke-black min-w-8  w-8"/>
-
+                <ChatBubbleOvalLeftIcon className="icon-color w-8  h-8"/>
             </SidebarPage>
 
             <SidebarPage name = "Workouts"isOpen={isOpen} href="dashboard/workouts">
-                <ChartBarIcon className="stroke-black min-w-8  w-8"/>
-
+                <CgGym  className="icon-color w-8  h-8"/>
             </SidebarPage>
 
             <SidebarPage name = "Nutrition"isOpen={isOpen}href="dashboard/nutrition">
-                <ChartBarIcon className="stroke-black min-w-8  w-8"/>
-
+                <IoFastFoodOutline className="icon-color w-8  h-8"/>
             </SidebarPage>
 
             <SidebarPage name = "Trends"isOpen={isOpen}href="dashboard/trends">
-                <ChartBarIcon className="stroke-black min-w-8  w-8"/>
-
+                <ChartBarIcon className="icon-color w-8  h-8"/>
             </SidebarPage>
 
             <SidebarPage name = "Achievements"isOpen={isOpen} href="dashboard/achievements">
-                <ChartBarIcon className="stroke-black min-w-8  w-8"/>
-
+                <FaMedal className="icon-color w-8  h-8"/>
             </SidebarPage>
 
             <SidebarPage name = "Quiz"isOpen={isOpen} href="quiz-diet">
-                <ChartBarIcon className="stroke-black min-w-8  w-8"/>
-
+                <FaPenToSquare className="icon-color w-8  h-8"/>
             </SidebarPage>
 
 
