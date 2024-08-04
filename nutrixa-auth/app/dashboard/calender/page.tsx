@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { generateDate, months } from "../../components/calendar/CalendarDate";
 import cal from "../../components/calendar/cal";
 import {ChevronLeftIcon, ChevronDoubleLeftIcon, ChevronRightIcon, ChevronDoubleRightIcon,  } from "@heroicons/react/16/solid";
+import Detailedcal from '../../components/calendar/popup'
 
 export default function Calendar()
 {
@@ -11,6 +12,8 @@ export default function Calendar()
 	const currentDate = dayjs();
 	const [today, setToday] = useState(currentDate);
 	const [selectDate, setSelectDate] = useState(currentDate);
+    const [showModal, setShowModal] = useState(false);
+	const [modalData, setModalData] = useState('');
 
     const handleDayChange = (days: number) => {
 		const newDate = today.add(days, 'day');
@@ -32,6 +35,11 @@ export default function Calendar()
 			return "No data logged for future date.";
 		}
 		return "No data logged in today.";
+	};
+
+    const handleDoubleClick = (date) => {
+		setModalData(`Data for ${date.toDateString()}`);
+		setShowModal(true);
 	};
 
 
@@ -101,6 +109,10 @@ export default function Calendar()
 									onClick={() => {
 										setSelectDate(date);
 									}}
+
+                                    onDoubleClick={() => 
+                                        handleDoubleClick(date.toDate()
+                                    )}
 								>
 									{date.date()}
 								</h1>
@@ -115,6 +127,7 @@ export default function Calendar()
 				</h1>
 				<p className="text-gray-400">{getDailyData()}</p>
 			</div>
+            <Detailedcal show={showModal} onClose={() => setShowModal(false)} data={modalData} />
 		</div>
 	);
 }
