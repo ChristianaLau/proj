@@ -1,16 +1,33 @@
-import Image from "next/image";
-import Link from "next/link";
-import Sidebar from "../components/Sidebar";
-import { currentUser } from '@clerk/nextjs/server';
+'use client'; // Indicate that this is a client component
 
-export default async function Home() {
-  const user = await currentUser();
+import { useEffect, useState } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
+import Sidebar from '../components/Sidebar';
+import { useUser } from '@clerk/nextjs';
 
-  // const response = await fetch('http://localhost:3000/api/gemini');
-  // if (!response.ok) {
-  //   throw new Error('Failed to create suggestions');
-  // }
-  // const data = await response.json();
+export default function Home() {
+  const { user } = useUser();
+  const [data, setData] = useState(null);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('/api/gemini');
+        if (!response.ok) {
+          throw new Error('Failed to fetch suggestions');
+        }
+        const result = await response.json();
+        setData(result);
+        console.log(data);
+      } catch (err) {
+        setError(err.message);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <main className="flex min-h-screen flex-col items-center bg-white">
@@ -45,7 +62,11 @@ export default async function Home() {
         </div>
       </header>
       <div className="w-full flex mt-4 ml-10">
-        <h1 className="text-2xl font-bold text-gray-800">Welcome Back, {user?.firstName || 'User'}!</h1>
+        <h1 className="text-2xl font-bold text-gray-800">
+          Welcome Back, {user?.firstName || 'User'}!
+        </h1>
+      </div>
+      <div className="w-full mt-4 ml-10">
       </div>
     </main>
   );

@@ -3,7 +3,7 @@ import connect from "@/lib/db";
 import { currentUser } from '@clerk/nextjs/server';
 import mongoose from "mongoose";
 
-export async function POST(req) {
+export async function GET(req) {
   try {
     const user = await currentUser();
     if (!user) {
