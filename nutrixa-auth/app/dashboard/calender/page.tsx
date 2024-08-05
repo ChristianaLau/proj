@@ -37,7 +37,7 @@ export default function Calendar()
 		return "No data logged in today.";
 	};
 
-    const handleDoubleClick = (date) => {
+    const handleDoubleClick = (date: Date) => {
 		setModalData(`Data for ${date.toDateString()}`);
 		setShowModal(true);
 	};
