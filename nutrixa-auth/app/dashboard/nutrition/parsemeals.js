@@ -1,4 +1,4 @@
-const extractIngredients = (meal) => {
+export const extractIngredients = (meal) => {
     const excludedWords = ['with', 'and', 'day', 'breakfast', 'lunch', 'dinner'];
     const mealTimes = ['breakfast', 'lunch', 'dinner', 'snack'];
     const mealWithoutTime = mealTimes.reduce((result, time) => result.replace(new RegExp(`^${time}:\\s*`, 'i'), ''), meal);
@@ -7,10 +7,8 @@ const extractIngredients = (meal) => {
     return filteredWords;
   };
   
-  const extractMealSentence = (meal, type) => {
+ export const extractMealSentence = (meal, type) => {
     const mealphrase = new RegExp(`${type}:([^.]*)`, 'i');
     const match = meal.match(mealphrase);
     return match ? match[1].trim() : null;
   };
-
-  export {extractIngredients, extractMealSentence};
