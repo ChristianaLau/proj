@@ -75,22 +75,22 @@ const Page = () => {
       
 
        {/*Strength Training More Info */}
-       <Link href='more-info' className='px-4 py-2 text-white  rounded-3xl hover:bg-lime-400 transition duration-600' style={{ position: 'relative', top: '1060px', right: '1370px', whiteSpace: 'nowrap' }}>
+       <Link href='more-info' className='px-4 py-2 text-white  rounded-3xl hover:text-lime-400 transition duration-600' style={{ position: 'relative', top: '1060px', right: '1370px', whiteSpace: 'nowrap' }}>
           More Info
         </Link>
 
         {/*Cardio Training More Info */}
-        <Link href='more-info2' className='px-4 py-2 text-white  rounded-3xl hover:bg-lime-400 transition duration-600' style={{ position: 'relative', top: '1060px', right: '1130px', whiteSpace: 'nowrap' }}>
+        <Link href='more-info2' className='px-4 py-2 text-white  rounded-3xl hover:text-lime-400 transition duration-600' style={{ position: 'relative', top: '1060px', right: '1130px', whiteSpace: 'nowrap' }}>
           More Info
         </Link>
 
         {/*Fat Burning More Info */}
-        <Link href='more-info3' className='px-4 py-2 text-white rounded-3xl hover:bg-lime-400 transition duration-600' style={{ position: 'relative', top: '1060px', right: '885px', whiteSpace: 'nowrap' }}>
+        <Link href='more-info3' className='px-4 py-2 text-white rounded-3xl hover:text-lime-400 transition duration-600' style={{ position: 'relative', top: '1060px', right: '885px', whiteSpace: 'nowrap' }}>
           More Info
         </Link>
 
         {/*Health Fitness More Info */}
-        <Link href='more-info4' className='px-4 py-2 text-white  rounded-3xl hover:bg-lime-400 transition duration-600' style={{ position: 'relative', top: '1060px', right: '645px', whiteSpace: 'nowrap' }}>
+        <Link href='more-info4' className='px-4 py-2 text-white  rounded-3xl hover:text-lime-400 transition duration-600' style={{ position: 'relative', top: '1060px', right: '645px', whiteSpace: 'nowrap' }}>
           More Info
         </Link>
 
