@@ -81,9 +81,9 @@
     color: black;
     text-overflow: inherit;
     position: relative;
-    margin-right: -150rem;
+    margin-right: -500rem;
     top: 8rem;
-    padding-left: 55px;
+    padding-left: 530px;
 }
 
 
@@ -149,10 +149,10 @@
 }
 
 .left-r>img{
-    width: 7500px;
+    width: 750px;
     height: auto;
     margin-top: 80rem;
-    margin-left: -82rem;
+    margin-left: -115rem;
 }
 
 .right-r{
@@ -161,7 +161,7 @@
     gap: 1rem;
     display: flex;
     flex-direction: column;
-    margin-left: -75rem;
+    margin-left: -130rem;
     margin-top: 80rem;
 }
 
