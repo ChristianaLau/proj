@@ -27,7 +27,6 @@ const Achievements = () => {
     router.push("/dashboard"); 
   };
 
-
   const gridItems = [
     { imageSrc: '/achievement1.png', description: 'Log into Nutrixa every day for a week' },
     { imageSrc: '/achievement4.png', description: 'Follow your diet plan for a week' },
@@ -44,23 +43,7 @@ const Achievements = () => {
   ];
 
   return (
-    <div style={{ width: '100%', height: '100%', position: 'relative' }}>
-
-      {boxVisible && (
-        <div className={`container ${fadeClass}`}>
-          <h1>Complete Tasks, Get Medals!</h1>
-          <Image
-            src="/bling.jpg"
-            alt="Medal"
-            width={300}
-            height={300}
-            className={fadeClass}
-          />
-          <button onClick={handleFadeOut} className={fadeClass}>Got it</button>
-        </div>
-      )}
-
-      {!boxVisible && (
+    <div className="parent">
         <div className="hidden-text visible">
           <h2 className="achievement-title">Christiana's Achievements</h2>
           <div className="grid-container">
@@ -93,7 +76,6 @@ const Achievements = () => {
             </div>
           </div>
 
-          {/*Vertical container section */}
           <div className="vertical-container">
             <div className="vertical-section">
               <h3>Medals Obtained</h3>
@@ -124,7 +106,6 @@ const Achievements = () => {
             ))}
           </div>
         </div>
-      )}
     </div>
   );
 };

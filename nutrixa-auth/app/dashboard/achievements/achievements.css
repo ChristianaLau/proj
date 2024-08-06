@@ -97,7 +97,7 @@ h2.total-quests {
 h3 {
     font-family: Arial;
     font-size: 30px;
-    margin-left: 100px;
+    margin-left: 50px;
 }
 
 button {
@@ -185,9 +185,8 @@ button:hover {
     transform: translate(-50%, -50%); /* Align center perfectly */
     width: 200px; /* Diameter of the circle */
     height: 200px; /* Diameter of the circle */
-    background-color: #7be2a3;
+    background-color: #d0fcdd;
     border-radius: 50%; /* Makes the div a circle */
     z-index: -1; /* Positions the circle behind the text */
-    filter: blur(5px);
+    filter: blur(10px);
 }
-
