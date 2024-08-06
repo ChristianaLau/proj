@@ -38,14 +38,11 @@ const Header = () => {
       <div className="flex items-center space-x-2">
         {userId ? (
           <>
-            <input
-              type="text"
-              placeholder="search"
-              className="p-2 border border-gray-300 rounded-full text-sm"
-            />
-            <button className="p-2 bg-gray-300 hover:bg-gray-400 rounded-full text-sm">
-              Search
-            </button>
+  <Link href="/dashboard" legacyBehavior>
+  <a className="px-4 py-2 text-white bg-green-500 rounded-3xl hover:bg-green-700 transition duration-600">
+   My Dashboard
+</a>
+</Link>
             <div className=" flex items-center">
               <div className="flex items-center justify-center w-16 h-16">
                 <UserButton
