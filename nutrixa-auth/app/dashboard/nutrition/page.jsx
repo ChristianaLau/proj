@@ -1,9 +1,28 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import {fetchFoodData} from "@/app/api/usda/api";
+
+const extractIngredients = (meal) => {
+  const excludedWords = ['with', 'and', 'day', 'breakfast', 'lunch', 'dinner', 'snack', 'a', 'of'];
+  const mealTimes = ['breakfast', 'lunch', 'dinner', 'snack'];
+  const mealWithoutTime = mealTimes.reduce((result, time) => result.replace(new RegExp(`^${time}:\\s*`, 'i'), ''), meal);
+  const words = mealWithoutTime.split(/\s+/);
+  const filteredWords = words.filter(word => !excludedWords.includes(word.toLowerCase()));
+  return filteredWords;
+};
+
+const extractMealPart = (meal, type) => {
+  const mealonly = new RegExp(`${type}:([^.]*)`, 'i');
+  const match = meal.match(mealonly);
+  return match ? match[1].trim() : null;
+};
 
 export default function Nutrition() {
   const [plan, setPlan] = useState(null);
+  const [ingredientData, setIngredientData] = useState({});
+  const [showNutritionalFacts, setShowNutritionalFacts] = useState({});
+  const [showMealDetails, setShowMealDetails] = useState({});
 
   useEffect(() => {
     const createSuggestions = async () => {
