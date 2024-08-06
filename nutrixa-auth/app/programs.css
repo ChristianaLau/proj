@@ -28,11 +28,13 @@
     text-transform: uppercase;
     /*font-style: italic;*/
     margin-top: 125px;
+    margin-left: 28rem;
 }
 
 .program-categories {
     display: flex;
-    gap: 1rem;
+    gap: 2rem;
+    margin-left: 27rem;
 
 }
 
