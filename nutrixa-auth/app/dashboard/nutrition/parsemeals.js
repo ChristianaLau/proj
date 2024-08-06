@@ -1,5 +1,5 @@
 const extractIngredients = (meal) => {
-    const excludedWords = ['with', 'and', 'day', 'breakfast', 'lunch', 'dinner', 'snack', 'a', 'of', 'variety', 'stir-fry', 'varieties'];
+    const excludedWords = ['with', 'and', 'day', 'breakfast', 'lunch', 'dinner'];
     const mealTimes = ['breakfast', 'lunch', 'dinner', 'snack'];
     const mealWithoutTime = mealTimes.reduce((result, time) => result.replace(new RegExp(`^${time}:\\s*`, 'i'), ''), meal);
     const words = mealWithoutTime.split(/\s+/);
