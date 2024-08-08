@@ -32,6 +32,7 @@ export async function GET(request) {
         diets: userDoc.diets,
         goal: userDoc.goal,
         person: userDoc.person,
+        firstName: userDoc.firstName,
       }), {
         status: 200,
         headers: { 'Content-Type': 'application/json' },

@@ -22,6 +22,7 @@ export default function Chatbot() {
   const [diets, setDiets] = useState<any>(null);
   const [goal, setGoal] = useState<any>(null);
   const [person, setPerson] = useState<any>(null);
+  const [firstName, setFirstName] = useState<string>('');
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -34,6 +35,7 @@ export default function Chatbot() {
           setDiets(data.diets);
           setGoal(data.goal);
           setPerson(data.person);
+          setFirstName(data.firstName);
         } else {
           console.error('Error fetching user data:', data.message);
         }
@@ -56,7 +58,7 @@ export default function Chatbot() {
                 role: "user",
                 parts: [
                   {
-                    text: `Hi Gemini, this is Christiana. They are ${person.gender}, aged: ${new Date().getFullYear() - new Date(person.dob).getFullYear()} years old, 
+                    text: `Hi Gemini, this is ${firstName}. They are ${person.gender}, aged: ${new Date().getFullYear() - new Date(person.dob).getFullYear()} years old, 
                     weighing: ${person.weight}, height: ${person.height}, with the following dietary restrictions: ${JSON.stringify(diets)} and the goal: ${JSON.stringify(goal)}. Please help them with any fitness/health questions`
                   }
                 ],
