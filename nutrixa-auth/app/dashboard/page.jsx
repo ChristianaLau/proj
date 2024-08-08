@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import Sidebar from '../components/Sidebar';
 import { useUser } from '@clerk/nextjs';
+import WaterLogger from '../trackers/waterintake';
 
 export default function Home() {
   const { user } = useUser();
@@ -37,9 +38,12 @@ export default function Home() {
             Welcome Back, {user?.firstName || 'User'}!
           </h1>
         </div>
-        <div className="w-full mt-4 ml-10">
+        <div className="w-full mt-4 ml-10">      
           {/* Content */}
         </div>
+        <h2 className='flex justify-start'>
+            <WaterLogger />
+        </h2>
       </main>
     </div>
   );
