@@ -78,20 +78,20 @@ const Achievements = () => {
 
           <div className="vertical-container">
             <div className="vertical-section">
-              <h3>Medals Obtained</h3>
-              <p>3</p>
+              <h3 className="vertical-section-title">Medals Obtained</h3>
+              <p className="vertical-section-text">3</p>
             </div>
             <div className="vertical-section">
-              <h3 className='quests'>Quests Completed</h3>
-              <p>5</p>
+              <h3 className="vertical-section-title quests">Quests Completed</h3>
+              <p className="vertical-section-text">5</p>
             </div>
             <div className="vertical-section">
-              <h3>Personal Goals Completed</h3>
-              <p>2</p>
+              <h3 className="vertical-section-title">Personal Goals Completed</h3>
+              <p className="vertical-section-text">2</p>
             </div>
           </div>
 
-          <h2 className='total-quests'>Total Quests</h2>
+          <h2 className="total-quests">Total Quests</h2>
           <div className="empty-grid-container">
             {gridItems.map((item, index) => (
               <div key={index} className="empty-grid-item">
@@ -101,7 +101,7 @@ const Achievements = () => {
                   width={250}
                   height={250}
                 />
-                <p>{item.description}</p>
+                <p className="grid-item-text">{item.description}</p>
               </div>
             ))}
           </div>

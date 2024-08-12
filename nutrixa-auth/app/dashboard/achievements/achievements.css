@@ -11,28 +11,79 @@ h1 {
     margin-bottom: 20px;
 }
 
-h2 {
-    font-family: Arial;
+.achievement-title {
+    position: relative;
+    z-index: 1;
+    color: black;
     font-size: 40px;
     margin: 100px;
 }
 
-h2.total-quests {
-    margin-top: 50px; /* Adjust as needed */
+.achievement-title::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 200px;
+    height: 200px;
+    background-color: #d0fcdd;
+    border-radius: 50%;
+    z-index: -1;
+    filter: blur(10px);
 }
 
-h3 {
+.grid-container {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    gap: 20px; 
+}
+
+.grid-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.vertical-container {
+    display: flex;
+    justify-content: space-between;
+    border-top: 2px solid #ccc;
+    border-bottom: 2px solid #ccc;
+    padding: 20px;
+    gap: 20px;
+}
+
+.vertical-section {
+    flex: 1;
+    padding: 20px;
+    border-left: 2px solid #ccc;
+    text-align: center;
+}
+
+.vertical-section:first-child {
+    border-left: none;
+}
+
+.vertical-section-title {
     font-family: Arial;
     font-size: 30px;
     margin-left: 50px;
 }
 
-
-p{
+.vertical-section-text {
     font-size: 30px;
 }
 
-/* Grid Container Styles */
+
+.total-quests {
+    margin-top: 50px;
+    font-family: Arial;
+    font-size: 40px;
+    margin: 100px;
+}
+
 .empty-grid-container {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -60,37 +111,14 @@ p{
     height: auto;
 }
 
-.empty-grid-item p {
+.grid-item-text {
     font-size: 18px;
     margin-top: 10px;
     text-align: center;
     color: #333;
 }
 
-/* Achievement Title Styles */
-.achievement-title {
-    position: relative;
-    z-index: 1;
-    color: black;
-    font-size: 40px;
-    margin: 100px;
-}
 
-.achievement-title::before {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 200px;
-    height: 200px;
-    background-color: #d0fcdd;
-    border-radius: 50%;
-    z-index: -1;
-    filter: blur(10px);
-}
-
-/* Fade Animations */
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
@@ -107,32 +135,4 @@ p{
 
 .fade-out {
     animation: fadeOut 2s forwards;
-}
-
-/* Vertical Container Styles */
-.vertical-container {
-    display: flex;
-    justify-content: space-between;
-    border-top: 2px solid #ccc;
-    border-bottom: 2px solid #ccc;
-    padding: 20px;
-    gap: 20px;
-}
-
-.vertical-section {
-    flex: 1;
-    padding: 20px;
-    border-left: 2px solid #ccc;
-    text-align: center;
-}
-
-.vertical-section:first-child {
-    border-left: none;
-}
-
-.grid-container {
-    display: flex;
-    justify-content: center; 
-    align-items: center; 
-    gap: 20px; 
 }
