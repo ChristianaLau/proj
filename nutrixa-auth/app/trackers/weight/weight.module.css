@@ -1,0 +1,11 @@
+.inputField::-webkit-outer-spin-button,
+.inputField::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.inputField {
+  -moz-appearance: textfield; /* Firefox */
+  -webkit-appearance: none;   /* Chrome, Safari, Edge, Opera */
+  appearance: none;           /* Standard */
+}
