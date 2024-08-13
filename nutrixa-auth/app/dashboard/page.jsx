@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import Sidebar from '../components/Sidebar';
 import { useUser } from '@clerk/nextjs';
-import WaterLogger from '../trackers/waterintake';
+import WaterLogger from '../trackers/water/waterintake';
 
 export default function Home() {
   const { user } = useUser();

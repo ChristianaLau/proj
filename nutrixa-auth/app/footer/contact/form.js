@@ -1,8 +1,6 @@
 
 'use client'
+import { useState } from 'react';
 
-
-
-export const ContactForm = () => {
- 
-};
+export default function ContactForm() {
+}
