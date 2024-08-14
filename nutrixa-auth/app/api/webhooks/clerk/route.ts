@@ -10,8 +10,9 @@ export async function POST(req: Request) {
   const WEBHOOK_SECRET = process.env.WEBHOOK_SECRET;
 
   if (!WEBHOOK_SECRET) {
-    console.error("Webhook Secret not found");
-    return new Response("Webhook Secret not found", { status: 500 });
+    throw new Error(
+      "Please add WEBHOOK_SECRET from Clerk Dashboard to .env or .env.local"
+    );
   }
 
   const headerPayload = headers();
@@ -20,7 +21,9 @@ export async function POST(req: Request) {
   const svix_signature = headerPayload.get("svix-signature");
 
   if (!svix_id || !svix_timestamp || !svix_signature) {
-    return new Response("Missing svix headers", { status: 400 });
+    return new Response("Error occurred -- no svix headers", {
+      status: 400,
+    });
   }
 
   const payload = await req.json();
@@ -38,7 +41,9 @@ export async function POST(req: Request) {
     }) as WebhookEvent;
   } catch (err) {
     console.error("Error verifying webhook:", err);
-    return new Response("Error verifying webhook", { status: 400 });
+    return new Response("Error occurred", {
+      status: 400,
+    });
   }
 
   const { id } = evt.data;
@@ -48,44 +53,40 @@ export async function POST(req: Request) {
     const {
       id,
       email_addresses,
+      image_url,
       first_name,
       last_name,
       username,
+      created_at, 
     } = evt.data;
-
-    console.log("Event data:", evt.data);
 
     const user = {
       clerkId: id,
-      email: email_addresses[0]?.email_address || '',
-      username: username || '',
-      firstName: first_name || '',
-      lastName: last_name || '',
+      email: email_addresses[0].email_address,
+      username: username,
+      firstName: first_name,
+      lastName: last_name,
+      photo: image_url,
+      created_at: new Date(created_at), 
       diets: {},
       goal: {},
       person: {},
-      achievements: {},
-      // Remove photo property if included
+      achievements:{},
     };
 
     console.log(user);
 
-    try {
-      const newUser = await createUser(user);
+    const newUser = await createUser(user);
 
-      if (newUser) {
-        await clerkClient.users.updateUserMetadata(id, {
-          publicMetadata: {
-            userId: newUser._id,
-          },
-        });
-
-        return NextResponse.json({ message: "New user created", user: newUser });
-      }
-    } catch (err) {
-      console.error("Error creating user or updating metadata:", err);
-      return new Response("Error creating user", { status: 500 });
+    if (newUser) {
+      await clerkClient.users.updateUserMetadata(id, {
+        publicMetadata: {
+          userId: newUser._id,
+        },
+      });
     }
+
+    return NextResponse.json({ message: "New user created", user: newUser });
   }
 
   console.log(`Webhook with an ID of ${id} and type of ${eventType}`);
