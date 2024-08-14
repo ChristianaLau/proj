@@ -3,7 +3,8 @@
 import { useState, useEffect } from 'react';
 import Sidebar from '../components/Sidebar';
 import { useUser } from '@clerk/nextjs';
-import WaterLogger from '../trackers/waterintake';
+import WaterLogger from '../trackers/water/waterintake';
+import WeightLog from '../trackers/weight/weightlog';
 
 export default function Home() {
   const { user } = useUser();
@@ -69,6 +70,7 @@ export default function Home() {
         </div>
         <h2 className='flex justify-start'>
             <WaterLogger />
+            <WeightLog />
         </h2>
 
         {/* Pop-up Box */}
