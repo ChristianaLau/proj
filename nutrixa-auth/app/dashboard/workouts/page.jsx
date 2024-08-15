@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 
-export default function Nutrition() {
+export default function Workout() {
   const [plan, setPlan] = useState(null);
 
   useEffect(() => {
@@ -40,6 +40,7 @@ export default function Nutrition() {
   };
   const saveWorkoutForDay = (workout) => {
     const selectDate = new Date().toISOString(); // Current date
+    const formattedWorkout = formatPlanText(day, dayIndex);
 
     fetch('/api/workoutsave', { // Adjust the API endpoint as needed
       method: 'POST',
@@ -48,7 +49,8 @@ export default function Nutrition() {
       },
       body: JSON.stringify({
         date: selectDate,
-        workout: workout,
+        workout: formattedWorkout,
+      
       }),
     })
       .then((response) => {
