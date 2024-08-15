@@ -75,12 +75,12 @@ const Achievements = () => {
   }, [achievements]);
 
   const gridItems = [
-    { imageSrc: '/achievement1.png', description: 'Log into Nutrixa every day for a week',achieved: false },
+    { imageSrc: '/achievement1.png', description: 'Log into Nutrixa every day for a week',achieved: achievements?.achievement11 },
     { imageSrc: '/achievement4.png', description: 'Follow your diet plan for a week', achieved: false }, 
     { imageSrc: '/achievement2.png', description: 'Follow your diet plan for three weeks', achieved: false },
     { imageSrc: '/achievement3.png', description: 'Meet your water goal every day for a month', achieved: achievements?.achievement1 }, 
     { imageSrc: '/achievement5.png', description: 'Follow your workout routine for three weeks', achieved: false },
-    { imageSrc: '/achievement6.png', description: 'Complete the quiz completely and review your goals', achieved: false },
+    { imageSrc: '/achievement6.png', description: 'Complete the quiz completely and review your goals', achieved: achievements?.achievement6  },
     { imageSrc: '/achievement7.png', description: 'Complete all health tasks for a month', achieved: false },
     { imageSrc: '/achievement8.png', description: 'Sleep 7-8 hours for a week', achieved: achievements?.achievement2 }, 
     { imageSrc: '/achievement9.png', description: 'Complete a personal goal', achieved: false },

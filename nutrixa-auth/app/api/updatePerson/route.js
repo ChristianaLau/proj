@@ -42,6 +42,7 @@ export async function POST(req) {
                 dob,
                 weight,
                 medicalConditions,
+                Submitted: true,  
             },
           },
         },

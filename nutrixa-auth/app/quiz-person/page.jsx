@@ -50,6 +50,7 @@ const QuizPage = () => {
           dob,
           weight,
           medicalConditions,
+        
         }),
       });
 
