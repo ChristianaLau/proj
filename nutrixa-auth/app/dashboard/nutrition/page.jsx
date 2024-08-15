@@ -122,9 +122,10 @@ export default function Nutrition() {
   const mealPlans = plan[1];
 
   const formatPlanText = (text, dayIndex) => {
-    // Convert the text to a string in case it's not already
-    const textString = String(text);
-  
+    if (typeof text !== 'string') {
+      console.error('Expected text to be a string but got', typeof text);
+      return ''; // Return an empty string or handle the error as appropriate
+    }
     // Remove "Day X:" at the beginning of the text, then remove * characters and replace new lines with <br/>
     return textString
       .replace(new RegExp(`^\\*\\*Day ${dayIndex + 1}:\\*\\*\\n?`), '')
