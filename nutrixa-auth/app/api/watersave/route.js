@@ -10,7 +10,7 @@ export async function POST(req) {
       return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
     }
 
-    const { weight } = await req.json();
+    const { date, water } = await req.json();
     const email = user.emailAddresses[0].emailAddress;
 
     await connect();
@@ -27,9 +27,9 @@ export async function POST(req) {
         { email: email },
         {
           $push: {
-            "person.weight_update": {
-              date: new Date(),
-              weight: weight,
+            "person.water_logs": {
+              date: new Date(date),
+              water: water,
             },
           },
         },

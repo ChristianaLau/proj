@@ -31,6 +31,35 @@ const WaterLogger: React.FC = () => {
         }
     };
 
+    const handleSubmit = async () => {
+        try {
+            const response = await fetch('/api/watersave', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    date: new Date().toISOString(),
+                    water: parseInt(intake, 10) || 0,
+                }),
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                console.log('Data submitted successfully:', data);
+            } else {
+                console.error('Failed to submit data:', response.statusText);
+            }
+        } catch (error) {
+            console.error('Error submitting data:', error);
+        }
+    };
+
+    const handleCombinedSubmit = async () => {
+        await handleUpdate();
+        await handleSubmit();
+    };
+
     return (
       <div className="bg-white text-black flex flex-col items-center justify-center">
         <h1 className="text-lg font-bold mb-4">Water Tracker</h1>
@@ -57,10 +86,10 @@ const WaterLogger: React.FC = () => {
           </label>
         </div>
         <button 
-          onClick={handleUpdate} 
+          onClick={handleCombinedSubmit} 
           className="mt-4 bg-blue-600 text-white px-4 py-2 rounded"
         >
-          Update
+          Submit
         </button>
         <div className="mt-4 w-full">
           <WaterAnimate intake={parseInt(intake, 10) || 0} goal={parseInt(goal, 10) || 0} />

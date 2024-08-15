@@ -38,7 +38,32 @@ export default function Nutrition() {
                             .replace(/\n/g, '<br/>');
     return formattedText;
   };
+  const saveWorkoutForDay = (workout) => {
+    const selectDate = new Date().toISOString(); // Current date
 
+    fetch('/api/workoutsave', { // Adjust the API endpoint as needed
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        date: selectDate,
+        workout: workout,
+      }),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Failed to save workout');
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log('Workout saved:', data);
+      })
+      .catch((error) => {
+        console.error('Error saving workout:', error);
+      });
+  };
   return (
     <div className="container mx-auto p-4">
       <h1 className="text-2xl font-bold mb-4">Your Workout Plans</h1>
@@ -50,6 +75,12 @@ export default function Nutrition() {
               className="text-gray-700"
               dangerouslySetInnerHTML={{ __html: formatPlanText(day, dayIndex) }}
             />
+            <button
+                onClick={() => saveWorkoutForDay(day)}
+                className="mt-2 px-4 py-2 bg-green-300 text-white rounded-lg"
+              >
+                Save this Workout
+            </button>
           </div>
         ))}
       </div>

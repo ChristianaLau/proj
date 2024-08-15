@@ -1,33 +1,53 @@
 export const extractIngredients = (meal) => {
-  //exclude types of meals and articles
-  const excludedWords = ['with', 'and', 'day', 'breakfast', 'lunch', 'dinner', 'a', '**'];
+  const excludedWords = ['with', 'and', 'day', 'breakfast', 'lunch', 'dinner', 'a', '**', 'of'];
+  //add some phrases from my output
+  const knownPhrases = [
+    'black bean burger', 
+    'whole-wheat bread', 
+    'tofu stir-fry', 
+    'brown rice', 
+    'apple slices', 
+    'almond butter', 
+    'trail mix',
+    'protein powder',
+    'carrot sticks'
+    // Add more known phrases as needed
+  ];
+
+  //meal times
   const mealTimes = ['breakfast', 'lunch', 'dinner', 'snack'];
+  const mealWithoutTime = mealTimes.reduce((result, time) => result.replace(new RegExp(`^${time}:\\s*`, 'i'), ''), meal);
 
-  //get rid of time in output
-  const mealWithoutTime = mealTimes.reduce((result, time) => 
-    result.replace(new RegExp(`^${time}:\\s*`, 'i'), ''), meal
-  );
+  // split by words
+  const words = mealWithoutTime.toLowerCase().split(/\s+/);
 
-  //split by comma
-  const ingPhrase = mealWithoutTime.split(/,\s*/);
+  // grpup phrases
+  let groupedWords = [];
+  for (let i = 0; i < words.length; i++) {
+    const twoWordPhrase = `${words[i]} ${words[i + 1] || ''}`.trim();
+    const threeWordPhrase = `${words[i]} ${words[i + 1] || ''} ${words[i + 2] || ''}`.trim();
 
-  //split more
-  const ingredients = ingPhrase.flatMap(ingredient =>
-    ingredient.split(/\s+and\s+|\s+with\s+/).map(word => word.trim())
-  );
+    if (knownPhrases.includes(threeWordPhrase)) {
+      groupedWords.push(threeWordPhrase);
+      i += 2; // skip the next two words
+    } else if (knownPhrases.includes(twoWordPhrase)) {
+      groupedWords.push(twoWordPhrase);
+      i += 1; // skip the next word
+    } else if (!excludedWords.includes(words[i])) {
+      groupedWords.push(words[i]);
+    }
+  }
 
-  //filer
-  const filteredIngredients = ingredients.filter(ingredient => {
-    const words = ingredient.split(/\s+/);
-    return words.some(word => !excludedWords.includes(word.toLowerCase()));
-  });
-  
-  return filteredIngredients;
-
+  return groupedWords;
 };
 
-export const extractMealSentence = (day, meal) => {
-  const regex = new RegExp(`${meal}: ([^*]+)`);
-  const match = day.match(regex);
-  return match ? match[1].trim() : null;
+export const extractMealSentence = (meal, type) => {
+  const mealTypesPattern = ['breakfast', 'lunch', 'dinner', 'snacks'].join('|');
+  const mealphrase = new RegExp(`${type}:([^]*?)(?=(${mealTypesPattern}):|$)`, 'i');
+  const match = meal.match(mealphrase);
+  if (match) {
+    // get rid or asterisks
+    return match[1].replace(/\*/g, '').trim();
+  }
+  return null;
 };
