@@ -53,8 +53,8 @@ const Achievements = () => {
         });
         if (response.ok) {
           const data = await response.json();
-          console.log("Fetched Achievements Data: ", data.achievements);  // Log the entire response
-          setAchievements(data.achievements || {});  // Ensure the state is set even if no changes were made
+          console.log("Fetched Achievements Data: ", data.achievements);  
+          setAchievements(data.achievements || {});  
         } else {
           console.error('Failed to fetch achievements');
         }
@@ -71,7 +71,7 @@ const Achievements = () => {
 
   // Log the achievements state whenever it updates
   useEffect(() => {
-    console.log("Achievements State: ", achievements);  // Log the state of achievements
+    console.log("Achievements State: ", achievements);  
   }, [achievements]);
 
   const gridItems = [

@@ -1,7 +1,4 @@
-export function OPTIONS() {
-    return NextResponse.json({}, { status: 200, headers: { Allow: 'POST' } });
-  }
-  import connect from '@/lib/db';
+import connect from '@/lib/db';
   import { currentUser } from '@clerk/nextjs/server';
   import mongoose from "mongoose";
   import { NextResponse } from 'next/server';

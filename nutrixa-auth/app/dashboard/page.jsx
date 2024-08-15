@@ -65,17 +65,17 @@ export default function Home() {
     fetchData();
   }, []);
 
-  useEffect(() => {
-    const lastShownDate = localStorage.getItem('popupLastShownDate');
-    const today = new Date().toISOString().split('T')[0];
+  // useEffect(() => {
+  //   const lastShownDate = localStorage.getItem('popupLastShownDate');
+  //   const today = new Date().toISOString().split('T')[0];
 
-    if (lastShownDate == today) {
-      setShowPopup(true);
-      localStorage.setItem('popupLastShownDate', today);
-    } else {
-      setShowPopup(false);
-    }
-  }, []);
+  //   if (lastShownDate == today) {
+  //     setShowPopup(true);
+  //     localStorage.setItem('popupLastShownDate', today);
+  //   } else {
+  //     setShowPopup(false);
+  //   }
+  // }, []);
 
   const createdAtDate = user ? new Date(user.createdAt).toLocaleDateString() : '';
 
