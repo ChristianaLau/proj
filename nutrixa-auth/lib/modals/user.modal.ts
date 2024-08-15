@@ -27,7 +27,7 @@ const UserSchema = new Schema({
     type: String,
   },
   created_at: {
-    type: Date, 
+    type: Date,
     required: true,
   },
   diets: {
@@ -42,6 +42,29 @@ const UserSchema = new Schema({
     type: Object,
     required: false,
   },
+  waterIntake: {
+    type: Number,
+    required: false,
+  },
+  daysWaterGoalMet: {
+    type: Boolean,
+    required: false,
+  },
+  daysSleepGoalMet: {
+    type: Number,
+    required: false,
+    default: 0,
+  },
+  daysMeditationGoalMet: {
+    type: Number,
+    required: false,
+    default: 0,
+  },
+  achievements: {
+    type: Object,
+    required: false,
+  },
+  
 });
 
 const User = models?.User || model("User", UserSchema, "Nutrixa_Users");

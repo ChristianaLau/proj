@@ -57,7 +57,7 @@ export async function POST(req: Request) {
       first_name,
       last_name,
       username,
-      created_at, 
+      created_at,
     } = evt.data;
 
     const user = {
@@ -67,11 +67,14 @@ export async function POST(req: Request) {
       firstName: first_name,
       lastName: last_name,
       photo: image_url,
-      created_at: new Date(created_at), 
+      created_at: new Date(created_at),
       diets: {},
       goal: {},
       person: {},
-      achievements:{},
+      daysWaterGoalMet: 0, 
+      daysSleepGoalMet: 0, 
+      daysMeditationGoalMet: 0, 
+      achievements: {},
     };
 
     console.log(user);

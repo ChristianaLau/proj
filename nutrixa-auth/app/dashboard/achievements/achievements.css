@@ -68,12 +68,14 @@ h1 {
 
 .vertical-section-title {
     font-family: Arial;
-    font-size: 30px;
-    margin-left: 50px;
+    font-size: 24px; /* Adjust to ensure it fits in one line */
+    white-space: nowrap; /* Prevent line wrapping */
+    margin-left: 0;
+    margin-right: 0;
 }
 
 .vertical-section-text {
-    font-size: 30px;
+    font-size: 24px; /* Ensure this text size fits well with the title */
 }
 
 
@@ -136,3 +138,8 @@ h1 {
 .fade-out {
     animation: fadeOut 2s forwards;
 }
+.strikethrough {
+    text-decoration: line-through;
+    color: gray; 
+  }
+  
