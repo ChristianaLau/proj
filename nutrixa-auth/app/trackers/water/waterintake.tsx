@@ -61,8 +61,7 @@ const WaterLogger: React.FC = () => {
     };
 
     return (
-      <div className="bg-white text-black flex flex-col items-center justify-center">
-        <h1 className="text-lg font-bold mb-4">Water Tracker</h1>
+      <div className="bg-white text-black flex flex-col items-center justify-center" style={{ marginTop: '-20px' }}> 
         <div className='mb-4 w-full'>
           <label className="block text-sm text-gray-700">
             Set your water goal (oz):

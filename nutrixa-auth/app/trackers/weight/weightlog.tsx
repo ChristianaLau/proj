@@ -33,8 +33,8 @@ export default function WeightLog() {
 ;
 
 return (
-    <div>
-      <form onSubmit={handleSubmit}>
+    <div className='flex flex-col items-center justify-center' >
+      <form onSubmit={handleSubmit} className="bg-white p-6 rounded-lg shadow-md">
         <input
           type="number"
           value={weight}
@@ -43,7 +43,9 @@ return (
           required
           className={styles.input}
         />
-        <button type="submit">Update Your Weight</button>
+        <button type="submit"
+        className=" p-2 px-4 bg-green-300 text-white rounded-lg hover:bg-green-400 transition duration-300"
+        >Update Your Weight</button>
       </form>
       {save && 
       <p>{save}</p>}

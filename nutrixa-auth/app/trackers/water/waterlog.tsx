@@ -1,5 +1,3 @@
-import styles from './waterlog.module.css';
-
 interface WaterCupProps {
   intake: number;
   goal: number;
@@ -10,15 +8,10 @@ const WaterAnimate: React.FC<WaterCupProps> = ({ intake, goal }) => {
 
   return (
     <div className="w-full h-8 bg-gray-200 rounded-md overflow-hidden mt-4">
-      <div className={styles.cup}>
         <div
-          className={styles.water}
-          style={{ height: `${waterLevel}%` }}
-        >
-          <div className={styles.water}></div>
-          <div className={styles.water}></div>
-        </div>
-      </div>
+            className="h-full bg-blue-300 transition-all duration-500 ease-in-out"
+            style={{ width: `${waterLevel}%` }}
+        />
     </div>
   );
 };

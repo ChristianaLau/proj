@@ -2,3 +2,12 @@
     color:gray;
     stroke: black;;
 }
+
+.sidebar {
+  width: 15rem; /* Sidebar open width */
+  transition: width 0.5s ease;
+}
+
+.sidebar-closed {
+  width: 5rem; /* Sidebar closed width */
+}
