@@ -14,9 +14,15 @@ export const extractIngredients = (meal) => {
     // Add more known phrases as needed
   ];
 
-  //meal times
-  const mealTimes = ['breakfast', 'lunch', 'dinner', 'snack'];
-  const mealWithoutTime = mealTimes.reduce((result, time) => result.replace(new RegExp(`^${time}:\\s*`, 'i'), ''), meal);
+
+const mealString = String(meal);
+
+// Meal times
+const mealTimes = ['breakfast', 'lunch', 'dinner', 'snack'];
+const mealWithoutTime = mealTimes.reduce(
+  (result, time) => result.replace(new RegExp(`^${time}:\\s*`, 'i'), ''),
+  mealString
+);
 
   // split by words
   const words = mealWithoutTime.toLowerCase().split(/\s+/);
@@ -42,12 +48,17 @@ export const extractIngredients = (meal) => {
 };
 
 export const extractMealSentence = (meal, type) => {
+  // Ensure meal is a string before processing
+  const mealString = String(meal);
+
   const mealTypesPattern = ['breakfast', 'lunch', 'dinner', 'snacks'].join('|');
   const mealphrase = new RegExp(`${type}:([^]*?)(?=(${mealTypesPattern}):|$)`, 'i');
-  const match = meal.match(mealphrase);
+  const match = mealString.match(mealphrase);
+
   if (match) {
-    // get rid or asterisks
+    // Get rid of asterisks and trim the result
     return match[1].replace(/\*/g, '').trim();
   }
+
   return null;
 };

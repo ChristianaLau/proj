@@ -25,6 +25,24 @@ export default function Nutrition() {
   const [lastDeletedIngredient, setLastDeletedIngredient] = useState(null);
 
   useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('/api/gemini');
+        if (!response.ok) {
+          throw new Error('Failed to fetch suggestions');
+        }
+        const result = await response.json();
+
+  
+      } catch (err) {
+        console.error('Error fetching data:', err.message);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  useEffect(() => {
     const createSuggestions = async () => {
       try {
         const response = await fetch(`/api/getAIplan`);
@@ -41,7 +59,6 @@ export default function Nutrition() {
 
     createSuggestions();
   }, []);
-
   //for api
 
   useEffect(() => {
@@ -104,13 +121,17 @@ export default function Nutrition() {
   // Display only the meal plans (assuming they are at index 1)
   const mealPlans = plan[1];
 
-  // Function to format the plan text
   const formatPlanText = (text, dayIndex) => {
+    // Convert the text to a string in case it's not already
+    const textString = String(text);
+  
     // Remove "Day X:" at the beginning of the text, then remove * characters and replace new lines with <br/>
-    return text.replace(new RegExp(`^\\*\\*Day ${dayIndex + 1}:\\*\\*\\n?`), '')
-               .replace(/\*/g, '')
-               .replace(/\n/g, '<br/>');
+    return textString
+      .replace(new RegExp(`^\\*\\*Day ${dayIndex + 1}:\\*\\*\\n?`), '')
+      .replace(/\*/g, '')
+      .replace(/\n/g, '<br/>');
   };
+  
 
   //render api data
   const renderNutrient = (nutrients, nutrientName, unit) => {

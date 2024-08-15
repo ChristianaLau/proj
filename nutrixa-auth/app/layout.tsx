@@ -33,9 +33,6 @@ export default function RootLayout({
                   <Link href="/footer/about" legacyBehavior>
                     <a className="text-xs hover:text-gray-700 text-custom-button-color">About Us</a>
                   </Link>
-                  <Link href="/footer/contact" legacyBehavior>
-                    <a className="text-xs hover:text-gray-700 text-custom-button-color">Contact</a>
-                  </Link>
                 </div>
               </div>
               <div className="text-xs text-center p-4 text-gray-600">
