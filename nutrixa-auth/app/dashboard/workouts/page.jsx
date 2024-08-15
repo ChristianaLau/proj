@@ -38,9 +38,12 @@ export default function Workout() {
                             .replace(/\n/g, '<br/>');
     return formattedText;
   };
+
   const saveWorkoutForDay = (workout) => {
     const selectDate = new Date().toISOString(); // Current date
-    const formattedWorkout = formatPlanText(day, dayIndex);
+    let formattedText = workout.replace(new RegExp(`^\\*\\*Today's Workout:\\*\\*\\n?`), '')
+    .replace(/\*/g, '')
+    .replace(/\n/g, '');
 
     fetch('/api/workoutsave', { // Adjust the API endpoint as needed
       method: 'POST',
@@ -49,7 +52,7 @@ export default function Workout() {
       },
       body: JSON.stringify({
         date: selectDate,
-        workout: formattedWorkout,
+        workout: formattedText,
       
       }),
     })
